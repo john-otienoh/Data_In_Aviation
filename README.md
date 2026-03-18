@@ -415,7 +415,7 @@ Most data engineers have no aviation context. Most aviation professionals have n
 If you are hiring, collaborating, or following a similar journey:
 
 - [**LinkedIn:**](https://www.linkedin.com/in/john-otienoh/)
-- **[X]**(https://x.com/justotienoh)
+- [**X**](https://x.com/justotienoh)
 - [**Email:**](otienohjohncharles@gmail.com)
 
 ---
