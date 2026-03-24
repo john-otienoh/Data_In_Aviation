@@ -8,9 +8,6 @@ Usage Examples:
 
     # Query operations
     python postgres_connection.py --list
-    python postgres_connection.py --view 1
-    python postgres_connection.py --search "Delta"
-    python postgres_connection.py --route JFK LAX
     python postgres_connection.py --stats
 
     # Help
@@ -24,7 +21,6 @@ import csv
 import logging
 import os
 import sys
-from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -37,9 +33,7 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# ============================================================================
 # CONFIGURATION
-# ============================================================================
 
 class Config:
     """Central configuration management."""
@@ -75,15 +69,12 @@ class Config:
     
     @property
     def csv_file_path(self) -> str:
-        return self.get_env("CSV_FILE_PATH", "flights_sample.csv")
+        return self.get_env("CSV_FILE_PATH", "../data/csv/flights_sample.csv")
 
 
 config = Config()
 
-
-# ============================================================================
 # LOGGING SETUP
-# ============================================================================
 
 class LoggerSetup:
     """Configure application logging."""
@@ -125,10 +116,7 @@ class LoggerSetup:
 LoggerSetup.setup()
 logger = LoggerSetup.get_logger(__name__)
 
-
-# ============================================================================
 # DATABASE SCHEMA
-# ============================================================================
 
 SCHEMA_SQL = """
 -- =============================================================
@@ -211,10 +199,7 @@ GROUP BY origin, destination
 ORDER BY flight_count DESC;
 """
 
-
-# ============================================================================
 # DATABASE CONNECTION
-# ============================================================================
 
 class DatabaseConnection:
     """Database connection manager with context manager support."""
@@ -266,9 +251,7 @@ class DatabaseConnection:
         self._cursor.execute(query, params)
         return list(self._cursor.fetchall()) if fetch else []
     
-    # ========================================================================
     # Database Setup Methods
-    # ========================================================================
     
     def create_database(self) -> bool:
         """Create database if it doesn't exist."""
@@ -306,10 +289,8 @@ class DatabaseConnection:
         except Exception as e:
             logger.error("Failed to create schema: %s", e)
             return False
-    
-    # ========================================================================
+        
     # Data Loading Methods
-    # ========================================================================
     
     def load_csv(self, csv_path: str, table: str = "flights") -> Tuple[int, int]:
         """
@@ -358,9 +339,7 @@ class DatabaseConnection:
             logger.error("Failed to load CSV: %s", e)
             return 0, len(rows) if 'rows' in locals() else 0
     
-    # ========================================================================
     # Query Methods
-    # ========================================================================
     
     def get_all_flights(self, limit: Optional[int] = None) -> List[Dict]:
         """Get all flights."""
@@ -395,10 +374,7 @@ class DatabaseConnection:
         
         return result
 
-
-# ============================================================================
 # COMMAND HANDLERS
-# ============================================================================
 
 class FlightCommands:
     """Command handlers for flight operations."""
@@ -493,10 +469,7 @@ class FlightCommands:
             
             logger.info("=" * 60)
 
-
-# ============================================================================
 # MAIN APPLICATION
-# ============================================================================
 
 def create_parser() -> argparse.ArgumentParser:
     """Create command line argument parser."""
