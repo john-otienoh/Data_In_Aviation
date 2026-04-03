@@ -103,7 +103,7 @@ After 6 months I will be positioned as an **Aviation Data Engineer** — a speci
 
 | Week | Day | Topic | Project | Done |
 |------|-----|-------|---------|------|
-| **Week 1** | Day 1 | SELECT, WHERE, ORDER BY | First aviation query set | [x] |
+| **Week 1** | Day 1 | SELECT, WHERE, ORDER BY | First aviation query set |- [x] |
 | | Day 2 | GROUP BY, COUNT, AVG | Airline performance summary | ☐ |
 | | Day 3 | SQL Joins | Full route explorer | ☐ |
 | | Day 4 | Subqueries & CTEs | Top 5 delayed routes | ☐ |

@@ -375,4 +375,7 @@ where airline = 'Qantas'
 order  by duration_mins ;
 
 --Find all flights that depart from African airports — NBO, JNB, ADD, ACC, DAR, CMB — sorted by airline name
-
+select id, origin as "Departure Airport", destination as "Arrival Airport", airline, duration_mins as "Flight Duration", date 
+from flights
+where origin in ('NBO', 'JNB', 'ADD', 'ACC', 'DAR', 'CMB')
+order  by airline ;
