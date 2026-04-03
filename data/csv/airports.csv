@@ -1,0 +1,28 @@
+iata_code,airport_name,city,country,continent
+NBO,Jomo Kenyatta International Airport,Nairobi,Kenya,Africa
+JNB,O.R. Tambo International Airport,Johannesburg,South Africa,Africa
+CPT,Cape Town International Airport,Cape Town,South Africa,Africa
+ADD,Addis Ababa Bole International Airport,Addis Ababa,Ethiopia,Africa
+DAR,Julius Nyerere International Airport,Dar es Salaam,Tanzania,Africa
+EBB,Entebbe International Airport,Entebbe,Uganda,Africa
+MBA,Moi International Airport,Mombasa,Kenya,Africa
+ACC,Kotoka International Airport,Accra,Ghana,Africa
+JFK,John F. Kennedy International Airport,New York,United States,North America
+LAX,Los Angeles International Airport,Los Angeles,United States,North America
+ORD,O'Hare International Airport,Chicago,United States,North America
+ATL,Hartsfield-Jackson Atlanta International Airport,Atlanta,United States,North America
+MIA,Miami International Airport,Miami,United States,North America
+DFW,Dallas Fort Worth International Airport,Dallas,United States,North America
+SFO,San Francisco International Airport,San Francisco,United States,North America
+LHR,London Heathrow Airport,London,United Kingdom,Europe
+CDG,Charles de Gaulle Airport,Paris,France,Europe
+DXB,Dubai International Airport,Dubai,United Arab Emirates,Asia
+BOM,Chhatrapati Shivaji Maharaj International Airport,Mumbai,India,Asia
+SIN,Singapore Changi Airport,Singapore,Singapore,Asia
+HKG,Hong Kong International Airport,Hong Kong,China,Asia
+NRT,Narita International Airport,Tokyo,Japan,Asia
+CMB,Bandaranaike International Airport,Colombo,Sri Lanka,Asia
+JED,King Abdulaziz International Airport,Jeddah,Saudi Arabia,Asia
+SYD,Sydney Kingsford Smith Airport,Sydney,Australia,Oceania
+MEL,Melbourne Airport,Melbourne,Australia,Oceania
+BNE,Brisbane Airport,Brisbane,Australia,Oceania

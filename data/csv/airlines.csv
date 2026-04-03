@@ -1,0 +1,19 @@
+iata_code,airline_name,country_of_origin,alliance
+KQ,Kenya Airways,Kenya,SkyTeam
+EK,Emirates,United Arab Emirates,None
+QF,Qantas,Australia,Oneworld
+AA,American Airlines,United States,Oneworld
+BA,British Airways,United Kingdom,Oneworld
+DL,Delta Air Lines,United States,SkyTeam
+UA,United Airlines,United States,Star Alliance
+AF,Air France,France,SkyTeam
+SQ,Singapore Airlines,Singapore,Star Alliance
+JL,Japan Airlines,Japan,Oneworld
+CX,Cathay Pacific,Hong Kong,Oneworld
+SA,South African Airways,South Africa,None
+ET,Ethiopian Airlines,Ethiopia,Star Alliance
+AI,Air India,India,Star Alliance
+VS,Virgin Atlantic,United Kingdom,None
+WN,Southwest Airlines,United States,None
+SV,Saudia,Saudi Arabia,None
+UL,SriLankan Airlines,Sri Lanka,Oneworld

@@ -69,7 +69,7 @@ class Config:
     
     @property
     def csv_file_path(self) -> str:
-        return self.get_env("CSV_FILE_PATH", "../data/csv/flights_sample.csv")
+        return self.get_env("CSV_FILE_PATH", "../data/csv/airports.csv")
 
 
 config = Config()
@@ -140,6 +140,27 @@ CREATE TABLE IF NOT EXISTS flights (
     updated_at     TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE IF NOT EXISTS airports (
+    id             SERIAL PRIMARY KEY,
+    iata_code      VARCHAR(5)               NOT NULL,
+    airport_name   VARCHAR(50)              NOT NULL,
+    city           VARCHAR(50)              NOT NULL,
+    country        VARCHAR(50)              NOT NULL,
+    continent      VARCHAR(50)              NOT NULL,
+    created_at     TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    updated_at     TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS airlines (
+    id             SERIAL PRIMARY KEY,
+    iata_code      VARCHAR(5)               NOT NULL,
+    airline_name   VARCHAR(50)              NOT NULL,
+    country_of_origin   VARCHAR(50)         NOT NULL,
+    alliance       VARCHAR(50)              NOT NULL,
+    created_at     TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    updated_at     TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
 -- =============================================================
 -- Indexes
 -- =============================================================
@@ -148,6 +169,9 @@ CREATE INDEX IF NOT EXISTS idx_flights_airline     ON flights (airline);
 CREATE INDEX IF NOT EXISTS idx_flights_origin      ON flights (origin);
 CREATE INDEX IF NOT EXISTS idx_flights_destination ON flights (destination);
 CREATE INDEX IF NOT EXISTS idx_flights_date        ON flights (date);
+
+CREATE INDEX IF NOT EXISTS idx_airports_airport_name ON airports (airport_name);
+CREATE INDEX IF NOT EXISTS idx_airlines_airline_name ON airlines (airline_name);
 
 -- =============================================================
 -- Auto-update updated_at on row change
@@ -164,6 +188,16 @@ $$;
 DROP TRIGGER IF EXISTS trg_flights_updated_at ON flights;
 CREATE TRIGGER trg_flights_updated_at
     BEFORE UPDATE ON flights
+    FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+DROP TRIGGER IF EXISTS trg_airlines_updated_at ON airlines;
+CREATE TRIGGER trg_airlines_updated_at
+    BEFORE UPDATE ON airlines
+    FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+DROP TRIGGER IF EXISTS trg_airports_updated_at ON airports;
+CREATE TRIGGER trg_airports_updated_at
+    BEFORE UPDATE ON airports
     FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
 -- =============================================================
@@ -292,7 +326,7 @@ class DatabaseConnection:
         
     # Data Loading Methods
     
-    def load_csv(self, csv_path: str, table: str = "flights") -> Tuple[int, int]:
+    def load_csv(self, csv_path: str, table: str = "airports") -> Tuple[int, int]:
         """
         Load CSV data into database.
         
@@ -327,6 +361,7 @@ class DatabaseConnection:
                     # Convert empty strings to None for numeric fields
                     if val == "" and col in ["duration_mins"]:
                         val = None
+                    
                     row_values.append(val)
                 values.append(tuple(row_values))
             
