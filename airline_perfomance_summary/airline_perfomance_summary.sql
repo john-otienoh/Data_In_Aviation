@@ -382,13 +382,51 @@ having sum(duration_mins) > 400 and count(*) > 3;
 -- 66. **Network Planning:** How many routes does each airline operate — as measured by number of distinct origin-destination pairs they appear in?
 
 -- 67. **Capacity Report:** Which airlines accumulate the most total airborne minutes — a proxy for fleet utilization?
+select airline, sum(duration_mins) as "Total Flight Duration"
+from flights
+group by airline 
+order by "Total Flight Duration" desc
+limit 1;
+
 -- 68. **Hub Dominance:** Which origin airports generate the most departures — indicating the strongest hub activity?
+select origin , count(*) as "Total departure count"
+from flights
+group by origin 
+order by "Total departure count"  desc
+limit 1;
+
 -- 69. **Route Popularity:** Which destination airports receive the most inbound flights — useful for terminal capacity planning?
+select destination , count(*) as "Total destination count"
+from flights
+group by destination 
+order by "Total destination count" desc
+limit 1;
+
 -- 70. **Airline Size Ranking:** Rank all airlines from largest to smallest by number of flights operated
+select airline , count(*) as "Total flights per airline"
+from flights
+group by airline
+order by "Total flights per airline" desc;
+
 -- 71. **Average Stage Length:** What is the average flight duration per airline — airlines with higher averages operate more long-haul networks
+select airline , avg(duration_mins) as "Aversge flights per airline"
+from flights
+group by airline;
+
 -- 72. **Busiest Travel Days:** Which dates had the highest number of flights — useful for staffing and gate planning?
+select date, count(*) as "Flight count per day"
+from flights 
+group by date
+order by "Flight count per day" desc
+limit 1;
+
 -- 73. **Ground Crew Scheduling:** How many flights arrive per destination per day on average?
+select destination, count(*)
+from flights f 
+group by destination ;
+
 -- 74. **Fleet Mix Analysis:** How many flights fall into short-haul (under 180 mins), medium-haul (180–480 mins), and long-haul (over 480 mins) categories per airline?
+
 -- 75. **Revenue Potential:** Which airlines have the highest total flying minutes — longer flights generate more ancillary revenue per flight?
 -- 76. **Kenya Airways Network Report:** What is the total number of flights, average duration, shortest route, and longest route for Kenya Airways specifically?
 -- 77. **Competitor Benchmarking:** How does the average flight duration of Emirates compare to British Airways and Singapore Airlines?
